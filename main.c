@@ -92,6 +92,15 @@ void displayCart() {
     }
 }
 
+void checkout() {
+    float total = 0.0;
+    for (int i = 0; i < cartSize; i++) {
+        total += cart[i].price * cart[i].quantity;
+    }
+    printf("Your total is: $%.2f\n", total);
+    printf("Thank you for your purchase!\n");
+    cartSize = 0;
+}
 
 int main() {
     int choice, productIndex, quantity, cartIndex;
