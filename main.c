@@ -64,6 +64,27 @@ void addToCart(int productIndex, int quantity) {
     }
 }
 
+void removeFromCart(int cartIndex) {
+    if (cartIndex < 0 || cartIndex >= cartSize) {
+        printf("Invalid cart selection.\n");
+        return;
+    }
+
+    for (int i = 0; i < MAX_PRODUCTS; i++) {
+        if (strcmp(products[i].name, cart[cartIndex].name) == 0) {
+            products[i].stock += cart[cartIndex].quantity;
+            break;
+        }
+    }
+
+    for (int i = cartIndex; i < cartSize - 1; i++) {
+        cart[i] = cart[i + 1];
+    }
+
+    cartSize--;
+    printf("Removed item from your cart.\n");
+}
+
 int main() {
     int choice, productIndex, quantity, cartIndex;
 
