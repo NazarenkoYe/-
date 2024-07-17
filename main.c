@@ -85,6 +85,14 @@ void removeFromCart(int cartIndex) {
     printf("Removed item from your cart.\n");
 }
 
+void displayCart() {
+    printf("Your Cart:\n");
+    for (int i = 0; i < cartSize; i++) {
+        printf("%d. %s - $%.2f (Quantity: %d)\n", i + 1, cart[i].name, cart[i].price, cart[i].quantity);
+    }
+}
+
+
 int main() {
     int choice, productIndex, quantity, cartIndex;
 
