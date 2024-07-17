@@ -28,6 +28,15 @@ Product products[MAX_PRODUCTS] = {
 CartItem cart[MAX_CART_ITEMS];
 int cartSize = 0;
 
+void displayProducts() {
+    printf("Available Products:\n");
+    for (int i = 0; i < MAX_PRODUCTS; i++) {
+        if (products[i].stock > 0) {
+            printf("%d. %s - $%.2f (Stock: %d)\n", i + 1, products[i].name, products[i].price, products[i].stock);
+        }
+    }
+}
+
 int main() {
     int choice, productIndex, quantity, cartIndex;
 
