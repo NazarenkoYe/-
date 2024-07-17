@@ -37,6 +37,33 @@ void displayProducts() {
     }
 }
 
+void addToCart(int productIndex, int quantity) {
+    if (productIndex < 0 || productIndex >= MAX_PRODUCTS || products[productIndex].stock < quantity) {
+        printf("Invalid product selection or insufficient stock.\n");
+        return;
+    }
+
+    for (int i = 0; i < cartSize; i++) {
+        if (strcmp(cart[i].name, products[productIndex].name) == 0) {
+            cart[i].quantity += quantity;
+            products[productIndex].stock -= quantity;
+            printf("Added %d more %s to your cart.\n", quantity, cart[i].name);
+            return;
+        }
+    }
+
+    if (cartSize < MAX_CART_ITEMS) {
+        strcpy(cart[cartSize].name, products[productIndex].name);
+        cart[cartSize].price = products[productIndex].price;
+        cart[cartSize].quantity = quantity;
+        products[productIndex].stock -= quantity;
+        cartSize++;
+        printf("Added %s to your cart.\n", products[productIndex].name);
+    } else {
+        printf("Your cart is full.\n");
+    }
+}
+
 int main() {
     int choice, productIndex, quantity, cartIndex;
 
